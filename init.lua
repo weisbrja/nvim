@@ -1,0 +1,5 @@
+require("core.settings")
+require("core.leader")
+require("core.mappings")
+require("core.lazy")
+require("core.autocmds")
