@@ -3,7 +3,7 @@ vim.keymap.set({ "n", "v" }, "j", [[v:count == 0 ? "gj" : "j"]], { expr = true, 
 vim.keymap.set({ "n", "v" }, "k", [[v:count == 0 ? "gk" : "k"]], { expr = true, silent = true })
 
 -- toggle spellchecking
-vim.keymap.set("n", "<Leader>s", ":set spell!<CR>", { silent = true })
+-- vim.keymap.set("n", "<Leader>s", ":set spell!<CR>", { silent = true })
 
 -- center
 vim.keymap.set("n", "n", "nzz", { silent = true })
@@ -23,8 +23,8 @@ vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
 -- move lines
-vim.keymap.set("v", "J", ":move '>+1<CR>gv=gv", { silent = true })
-vim.keymap.set("v", "K", ":move '<-2<CR>gv=gv", { silent = true })
+-- vim.keymap.set("v", "J", ":move '>+1<CR>gv=gv", { silent = true })
+-- vim.keymap.set("v", "K", ":move '<-2<CR>gv=gv", { silent = true })
 
 -- disable highlighting search results
 vim.keymap.set("n", "//", ":nohlsearch<CR>", { silent = true })

@@ -5,6 +5,7 @@ return {
 	config = function()
 		require("mini.comment").setup()
 		require("mini.trailspace").setup()
+		-- require("mini.sessions").setup()
 		require("mini.ai").setup()
 	end,
 }

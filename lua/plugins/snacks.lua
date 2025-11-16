@@ -302,7 +302,7 @@ return {
 			function()
 				Snacks.lazygit()
 			end,
-			desc = "Harpoon Marks",
+			desc = "LazyGit",
 		},
 	},
 }
