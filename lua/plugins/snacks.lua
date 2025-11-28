@@ -70,7 +70,6 @@ return {
 		input = { enabled = true },
 		quickfile = { enabled = true },
 		scope = { enabled = true },
-		statuscolumn = { enabled = true },
 		zen = { enabled = false },
 		lazygit = { enabled = true },
 		rename = { enabled = true, },
