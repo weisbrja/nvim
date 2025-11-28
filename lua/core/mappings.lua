@@ -40,12 +40,13 @@ vim.keymap.set("n", "//", ":nohlsearch<CR>", { silent = true })
 -- vim.keymap.set("n", "[l", "<Cmd>lnext<CR>zz")
 -- vim.keymap.set("n", "]l", "<Cmd>lprev<CR>zz")
 
+-- splits
+vim.keymap.set('n', '<C-w>%', vim.cmd.vsplit, { silent = true })
+vim.keymap.set('n', '<C-w>"', vim.cmd.split,  { silent = true })
+
 -- clipboard
 vim.keymap.set("n", "x", '"_x')
 vim.keymap.set("n", "c", '"_c')
--- vim.keymap.set({ "n", "x" }, "gy", '"+y')
--- vim.keymap.set("n", "gp", '"+p')
--- vim.keymap.set("x", "gp", '"+P') -- paste in visual without copying selected text
 
 -- visually select changed text
 vim.keymap.set("n", "gV", [["`[" . strpart(getregtype(), 0, 1) . "`]"]], { expr = true, replace_keycodes = false })

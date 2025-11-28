@@ -25,9 +25,7 @@ vim.o.shiftwidth = 4
 
 vim.o.linebreak = true
 
--- number column
 vim.o.number = true
-vim.o.signcolumn = "number"
 
 vim.o.title = true
 
