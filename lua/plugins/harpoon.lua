@@ -1,5 +1,5 @@
 return {
-	"ThePrimeagen/harpoon",
+	"weisbrja/harpoon",
 	branch = "harpoon2",
 	dependencies = { "nvim-lua/plenary.nvim" },
 	keys = function()
@@ -17,7 +17,7 @@ return {
 				function()
 					require("harpoon"):list():add()
 				end,
-				"Harpoon File"
+				"Harpoon File",
 			},
 			{
 				"<Leader>p",
@@ -46,4 +46,8 @@ return {
 		return keys
 	end,
 	opts = { settings = { sync_on_ui_close = true } },
+	config = function(_, opts)
+		require("harpoon").setup(opts)
+		require("harpoon.snacks").setup()
+	end,
 }

@@ -1,41 +1,3 @@
-local harpoon_source = {
-	finder = function()
-		local output = {}
-		for _, item in ipairs(require("harpoon"):list().items) do
-			if item and item.value:match("%S") then
-				table.insert(output, {
-					text = item.value,
-					file = item.value,
-					pos = { item.context.row, item.context.col },
-				})
-			end
-		end
-		return output
-	end,
-	filter = {
-		transform = function()
-			return true
-		end,
-	},
-	format = function(item)
-		return {
-			{ item.text },
-			{ ":", "SnacksPickerDelim" },
-			{ tostring(item.pos[1]), "SnacksPickerRow" },
-			{ ":", "SnacksPickerDelim" },
-			{ tostring(item.pos[2]), "SnacksPickerCol" },
-		}
-	end,
-	preview = function(ctx)
-		if Snacks.picker.util.path(ctx.item) then
-			return Snacks.picker.preview.file(ctx)
-		else
-			return Snacks.picker.preview.none(ctx)
-		end
-	end,
-	confirm = "jump",
-}
-
 local directories_source = {
 	finder = function(opts, ctx)
 		local cmd, _ = require("snacks.picker.source.files").get_cmd(opts.cmd)
@@ -74,7 +36,7 @@ return {
 	opts = {
 		picker = {
 			enabled = true,
-			sources = { harpoon = harpoon_source, directories = directories_source },
+			sources = { directories = directories_source },
 			layouts = {
 				-- override vscode layout to use backdrop (all other options taken from the layout definition)
 				vscode = {
@@ -104,7 +66,6 @@ return {
 		terminal = { enabled = false },
 		words = { enabled = false },
 		bigfile = { enabled = true },
-		explorer = { enabled = true },
 		indent = { enabled = true, animate = { enabled = false } },
 		input = { enabled = true },
 		quickfile = { enabled = true },
@@ -112,19 +73,7 @@ return {
 		statuscolumn = { enabled = true },
 		zen = { enabled = false },
 		lazygit = { enabled = true },
-		rename = {
-			enabled = true,
-			config = function()
-				vim.api.nvim_create_autocmd("User", {
-					pattern = "OilActionsPost",
-					callback = function(event)
-						if event.data.actions[1].type == "move" then
-							Snacks.rename.on_rename_file(event.data.actions[1].src_url, event.data.actions[1].dest_url)
-						end
-					end,
-				})
-			end,
-		},
+		rename = { enabled = true, },
 	},
 	keys = {
 		{
@@ -155,14 +104,6 @@ return {
 			end,
 			desc = "Resume Picker",
 		},
-
-		{
-			"<Leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File Explorer",
-		},
 		{
 			"<Leader>f",
 			function()
@@ -171,25 +112,11 @@ return {
 			desc = "Find File",
 		},
 		{
-			"<Leader>F",
-			function()
-				Snacks.picker.files({ cwd = require("oil").get_current_dir() })
-			end,
-			desc = "Find File in current Oil Directory",
-		},
-		{
 			"<Leader>d",
 			function()
 				Snacks.picker.pick("directories")
 			end,
 			desc = "Find Directory",
-		},
-		{
-			"<Leader>D",
-			function()
-				Snacks.picker.pick("directories", { cwd = require("oil").get_current_dir() })
-			end,
-			desc = "Find Directory in current Oil Directory",
 		},
 		{
 			"<Leader>z",
